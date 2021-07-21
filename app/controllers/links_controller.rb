@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  
+
   def index
   end
 
@@ -8,8 +8,13 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.create(permitted_params)
-    redirect_to @link
+    @link = Link.new(permitted_params)
+
+    if @link.save
+      redirect_to @link
+    else
+      render :new
+    end
   end
 
   def show

@@ -1,5 +1,12 @@
-
 <%= form_with model: @link do |form| %>
+  <div>
+    <% if @link.errors.any? %>
+      <% @link.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
+  </div>
+
   <div>
     <%= form.label :title %>
     <%= form.text_field :title %>
