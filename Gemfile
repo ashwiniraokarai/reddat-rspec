@@ -41,6 +41,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
 group :development do
