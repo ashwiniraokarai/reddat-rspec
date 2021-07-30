@@ -19,6 +19,6 @@ RSpec.feature "User downvotes a link" do
       click_on "Downvote"
     end
 
-    expect(page).to have_css("#link_#{link.id}"), text: 4
+    expect(page).to have_css("#link_#{link.id} [data-role=score]"), text: 4
   end
 end

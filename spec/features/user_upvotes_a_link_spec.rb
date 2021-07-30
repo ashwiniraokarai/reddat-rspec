@@ -28,6 +28,6 @@ RSpec.feature "User upvotes a link" do
     # Score is just a method that returns the diff between the two counts.
     # That way we limit this feature spec to validate what we see visibly on the screen i.e,
     # the score value as seen on the html element which represents it. Not the actual method on the model behind it thet determines the value.
-    expect(page).to have_css("#link_#{link.id}"), text: 1
+    expect(page).to have_css("#link_#{link.id} [data-role=score]"), text: 1
   end
 end

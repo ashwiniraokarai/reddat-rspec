@@ -6,11 +6,10 @@
       <%= link_to link.title, link.url %>
       <%# call the create route on the upvote resource %>
       <%= link_to "Upvote", link_upvote_path(link.id), method: "post" %>
-
       <%# call the create route on the downvote resource %>
       <%= link_to "Downvote", link_downvote_path(link.id), method: "post" %>
-
-      Score:<%= link.score %>
+      <div data-role=score> Score: <%= link.score %></div>
+      <br>
     <% end %>
 <% end %>
 </ul>
