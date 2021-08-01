@@ -1,12 +1,12 @@
 <%= link_to "Submit a new link", new_link_path %>
 
-<ul>
+<ul id="links">
 <% @links.each do |link| %>
     <%= content_tag_for :li, link do %>
       <%= link_to link.title, link.url %>
-      <%# call the create route on the upvote resource %>
+      <%# call the create route on the nested upvote resource (hooked to Upvotes Controller)%>
       <%= link_to "Upvote", link_upvote_path(link.id), method: "post" %>
-      <%# call the create route on the downvote resource %>
+      <%# call the create route on the nested downvote resource (hooked to Downvotes Controller) %>
       <%= link_to "Downvote", link_downvote_path(link.id), method: "post" %>
       <div data-role=score> Score: <%= link.score %></div>
       <br>

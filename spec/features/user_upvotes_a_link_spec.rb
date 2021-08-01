@@ -14,7 +14,7 @@ RSpec.feature "User upvotes a link" do
     # predict the construct of the html for the link element produced by content_tag_for
     # content_tag_for creates an HTML element with id and class parameters that relate to the specified Active Record object
 
-    # at this point I realizd I needed a build a few things in order for the rest of the functionality to work (upvote, score) to work:
+    # at this point I realized I needed a build a few things in order for the rest of the functionality to work (upvote, score) to work:
     # the underlying logic and the html elements that will need to be hooked up to this logic
     # So I built the functionality driven by model specs, and the html element befire returning to this spec
     # Do model specs and return to this test after

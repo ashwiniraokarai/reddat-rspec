@@ -8,10 +8,22 @@ require 'rails_helper'
 # And it should link to the correct URL
 
 RSpec.feature "User visits homepage" do
-  scenario "sees the link they submitted" do
+  scenario "sees submitted links" do
     link = FactoryGirl.create(:link)   #alternately you can simply call create since its loaded into the global context
     visit root_path
 
     expect(page).to have_link link.title, href: link.url
+  end
+
+  scenario "sees previously submitted links sorted by highest to lowest score" do
+    coldest_link = FactoryGirl.create(:link, title: "Coldest", upvotes: 3, downvotes: 3)
+    hottest_link = FactoryGirl.create(:link, title: "Hottest", upvotes: 5, downvotes: 1)
+    mediocre_link = FactoryGirl.create(:link, title: "Mediocre", upvotes: 4 , downvotes: 2)
+
+    visit root_path
+
+    expect(page).to have_css("#links li:nth-child(1)", text: "Hottest")
+    expect(page).to have_css("#links li:nth-child(2)", text: "Mediocre")
+    expect(page).to have_css("#links li:nth-child(3)", text: "Coldest")
   end
 end

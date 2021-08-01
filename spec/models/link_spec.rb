@@ -42,3 +42,13 @@ RSpec.describe Link, "#score" do
     expect(link.score).to eq 1
   end
 end
+
+RSpec.describe Link, ".hottest_first" do
+  it "returns links sorted from highest score to lowest" do
+    coldest = FactoryGirl.create(:link, upvotes: 3, downvotes: 3)
+    hottest = FactoryGirl.create(:link, upvotes: 5, downvotes: 1)
+    lukewarm = FactoryGirl.create(:link, upvotes: 2, downvotes: 1)
+
+    expect(Link.hottest_first).to eq [hottest, lukewarm, coldest]
+  end
+end
