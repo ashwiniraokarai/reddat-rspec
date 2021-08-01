@@ -8,7 +8,7 @@ require 'rails_helper'
 
 RSpec.feature "User upvotes a link" do
   scenario "they see an increased score" do
-    link = FactoryGirl.create(:link)
+    link = FactoryBot.create(:link)
     visit root_path
 
     # predict the construct of the html for the link element produced by content_tag_for

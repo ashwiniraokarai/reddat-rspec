@@ -8,7 +8,7 @@ require 'rails_helper'
 
 RSpec.feature "User downvotes a link" do
   scenario "they see a decreased score" do
-    link = FactoryGirl.create(:link, upvotes: 5)
+    link = FactoryBot.create(:link, upvotes: 5)
 
     visit root_path
 
