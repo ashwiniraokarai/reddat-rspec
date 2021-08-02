@@ -52,3 +52,11 @@ RSpec.describe Link, ".hottest_first" do
     expect(Link.hottest_first).to eq [hottest, lukewarm, coldest]
   end
 end
+
+#test model validations using shoulda-matchers library
+RSpec.describe Link, "validations" do
+  #equivalent of it { expect(Link.new).to validate_presence_of(:url}
+  #equivalent of it { expect(subject).to validate_presence_of(:url}
+  #equivalent of it { shoulda validate_presence_of(:url}
+  it { is_expected.to validate_presence_of(:url) }
+end
