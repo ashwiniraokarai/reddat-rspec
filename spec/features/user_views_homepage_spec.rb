@@ -8,7 +8,7 @@ require 'rails_helper'
 # And it should link to the correct URL
 
 RSpec.feature "User visits homepage" do
-  scenario "sees submitted links" do
+  scenario "sees previously submitted links" do
     link = FactoryBot.create(:link)   #alternately you can simply call create since its loaded into the global context
     visit root_path
 

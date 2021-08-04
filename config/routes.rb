@@ -9,4 +9,14 @@ Rails.application.routes.draw do
     resource :upvote, only: [:create]
     resource :downvote, only: [:create]
   end
+
+# api and v1 are just namespaces so the route can be structured like this: http://localhost:3000/api/v1/links
+# which matches the folder structure where the index method mapping to the endpoint lives:
+# controllers/api/v1/links_controller
+  namespace :api do
+    namespace :v1 do
+      resources :links, only: [:index]
+    end
+  end
+
 end
