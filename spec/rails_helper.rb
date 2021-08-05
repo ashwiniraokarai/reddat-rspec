@@ -20,7 +20,7 @@ require 'capybara/rails'
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
-# (Ash) uncommenting because I have factory files placed under support dir that I want loaded
+# (Ash) uncommenting because I have helper/support files placed under support dir that I want loaded ("required")
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.

@@ -9,16 +9,17 @@ RSpec.describe "get api/v1/links" do
     get api_v1_links_path
 
     expect(response.code).to eq("200")
-    expect(JSON.parse(response.body).count).to eq 3
-    expect(JSON.parse(response.body)[0]["id"]).to eq(hottest_link.id)
+    # JSON.parse line is extracted to its own method placed under spec support directory
+    expect(parsed_json_response_body.count).to eq 3
+    expect(parsed_json_response_body[0]["id"]).to eq(hottest_link.id)
 
-    expect(JSON.parse(response.body)[0]).to eq({
-      #forced to use hash rockets syntax vs the new hash syntax because keys are not symbols
-      "id" => hottest_link.id,
-      "title" => hottest_link.title,
-      "url" => hottest_link.url,
-      "upvotes" => hottest_link.upvotes,
-      "downvotes" => hottest_link.downvotes
+    expect(parsed_json_response_body[0]).to eq({
+        #forced to use hash rockets syntax vs the new hash syntax because keys are not parsed as symbols
+        "id" => hottest_link.id,
+        "title" => hottest_link.title,
+        "url" => hottest_link.url,
+        "upvotes" => hottest_link.upvotes,
+        "downvotes" => hottest_link.downvotes
       })
   end
 end
