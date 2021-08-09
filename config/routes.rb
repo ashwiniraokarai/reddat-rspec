@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 # controllers/api/v1/links_controller
   namespace :api do
     namespace :v1 do
-      resources :links, only: [:index]
+      resources :links, only: [:index, :create]
     end
   end
 
