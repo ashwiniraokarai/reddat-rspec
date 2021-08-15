@@ -6,7 +6,7 @@ RSpec.describe "get api/v1/links" do
     hottest_link = FactoryBot.create(:link, title: "hottest_link", url: "http://www.hottestlink.com", upvotes: 5, downvotes: 1)
     lukewarm_link = FactoryBot.create(:link, title: "lukewarm_link", upvotes: 4, downvotes: 2)
 
-    get api_v1_links_path
+    get(api_v1_links_path)
 
     expect(response.code).to eq("200")
     # JSON.parse line is extracted to its own method placed under spec support directory
@@ -30,7 +30,7 @@ RSpec.describe "post api/v1/links" do
     #...defined in the link factory
     link_params = FactoryBot.attributes_for(:link)
     #params is an argument. The hash will yield { :params => { :link => { title: "...", url: "..."} } }
-    post api_v1_links_path, { params: { link: link_params } }
+    post(api_v1_links_path, { params: { link: link_params } } )
 
     expect(response.status).to eq(201)
   end
@@ -39,7 +39,7 @@ RSpec.describe "post api/v1/links" do
     it "returns a 422, with error" do
       link_params = FactoryBot.attributes_for(:link, :invalid)
 
-      post api_v1_links_path, { params: { link: link_params } }
+      post(api_v1_links_path, { params: { link: link_params } } )
 
       expect(response.status).to eq(422)
       expect(parsed_json_response_body["errors"]).not_to be_empty
