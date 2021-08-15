@@ -2,27 +2,27 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.hottest_first
-    render ( @links )
+    render(:index)
   end
 
   def new
     @link = Link.new
-    render ( @link )
+    render(:new)
   end
 
   def create
     @link = Link.new(permitted_params)
 
     if @link.save
-      redirect_to @link
+      redirect_to(@link)
     else
-      render ( :new )
+      render(:new)
     end
   end
 
   def show
     @link = Link.find(params[:id])
-    render ( @link )
+    render(:show)
   end
 
   private

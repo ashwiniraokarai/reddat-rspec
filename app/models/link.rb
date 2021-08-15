@@ -1,6 +1,8 @@
 class Link < ApplicationRecord
   validates :url, presence: true
 
+  IMAGE_FORMATS = [".jpg", ".png", ".gif"]
+
   def upvote
     #an alternative/ abstraction to update(upvotes: upvotes + 1)
     increment!(:upvotes)
@@ -22,5 +24,11 @@ class Link < ApplicationRecord
     #plus, its an instance method (meant for Object/ single table row) that is not in the scope of a class method (meant for rows on Table)
     #wrapping the operation in Arel.sql due to danger alert from rails and discontinued support in Rails v > 6
     order(Arel.sql("upvotes - downvotes DESC"))
+  end
+
+  def image?
+    #equivalent of url.ends_with? (".jpg") || url.ends_with? (".png") || url.ends_with? (".gif")
+    #the "splat" operator can make an array into several arguments
+    url.end_with? *IMAGE_FORMATS
   end
 end
