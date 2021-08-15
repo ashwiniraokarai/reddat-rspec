@@ -27,8 +27,9 @@ class Link < ApplicationRecord
   end
 
   def image?
-    #equivalent of url.ends_with? (".jpg") || url.ends_with? (".png") || url.ends_with? (".gif")
+    #equivalent of url.end_with? (".jpg") || url.end_with? (".png") || url.ends_with? (".gif")
     #the "splat" operator can make an array into several arguments
+    return false if url.nil?
     url.end_with? *IMAGE_FORMATS
   end
 end
