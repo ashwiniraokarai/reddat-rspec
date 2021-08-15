@@ -7,6 +7,9 @@ RSpec.describe "links/index.html.erb" do
       FactoryBot.create(:link, url: "https://someimage.jpg")
       links = Link.all
 
+      # assign the links variable to the instance variable @links required in the index.html.erb view
+      # if this were a partial view, you could skip assign and instead pass along a local variable in the render method call:
+      # render partial: "links/_link.html.erb", locals: { link: link}
       assign(:links, links)
       render
 
