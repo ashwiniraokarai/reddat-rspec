@@ -12,7 +12,8 @@
       <%= link_to "Upvote", link_upvote_path(link.id), method: "post" %>
       <%# call the create route on the nested downvote resource (hooked to Downvotes Controller) %>
       <%= link_to "Downvote", link_downvote_path(link.id), method: "post" %>
-      <div data-role=score> Score: <%= link.score %></div>
+      <%# move to its own method = not in the model but a helper method %>
+      <div data-role=score>Score: <%= formatted_score(link) %></div>
       <br>
     <% end %>
 <% end %>
