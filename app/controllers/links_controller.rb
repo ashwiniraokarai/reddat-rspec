@@ -14,7 +14,9 @@ class LinksController < ApplicationController
     @link = Link.new(permitted_params)
 
     if @link.save
-      redirect_to(@link)
+      #call method that's responsible for mailing a notification to moderator when new link is submitted
+      LinkMailer.new_link(@link)
+      redirect_to link_path(@link)
     else
       render(:new)
     end
