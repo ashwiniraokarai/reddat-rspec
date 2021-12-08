@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Next:
+Rewrite links_controller_spec to use double in place of the real link object
