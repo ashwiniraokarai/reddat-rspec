@@ -24,4 +24,5 @@ Things you may want to cover:
 * ...
 
 Next:
-Rewrite links_controller_spec to use double in place of the real link object
+For Wed Dec 08
+Practice object stubbing/ mocking (test double creation Score calculator) - page 53

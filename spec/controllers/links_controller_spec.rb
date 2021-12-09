@@ -21,27 +21,26 @@ RSpec.describe LinksController, "#create" do
     it "triggers the mailer responsible for emailing the moderator" do
       # the fact that we are testing the mailer trigger from the controller BUT creating a "real" link in the process can be considered as dependency
       # In other words, the Link object is only a collaborator which we could avoid exercising in order to keep this controller spec isolated
-      # STUBBING: To avoid this, replace it with a double instead and allow the double to instantiate a.k.a receive(:new) and return a fake link object
       # Commenting old code that supplies attributes for creating a real link
       # link_params = FactoryBot.attributes_for(:link)
 
-      # set up Link model to return a fake link object (a stub, a canned response) when instantiated
+      # STUBBING: To avoid this, create a setup where when calls are made to Link model's "new" method, return a fake link object (a double)
+
+      #construct a test double (aka mock object)
       valid_link = double(save: true)
+      # set up Link model to return a fake link object when calls are made to it's "new" method  ( => return a canned response, in this case a double)
       allow(Link).to receive(:new).and_return(valid_link)
+      # set up LinkMailer to call fake/stubbed method new_link
+      allow(LinkMailer).to receive(:new_link)
 
-
-      # expect LinkController#create to call LinkMailer#new_link method
-      # in rspec world, you think from the receiving end - expect LinkMailer to receive a call to "new_link"
-      # said another way, expect "new_link" method of LinkmMailer to be called
-      expect(LinkMailer).to receive(:new_link).with(valid_link)
-
-      # the "exercising the system" part of the spec is usually and quite intuitiely written before the assertion..
-      # But in here it's the other way around (weird)
-        # Commenting old code related to creating a real link
-        #   post(:create, { params: {link: {link_params} }})
-      #instantiate the Link model (this will return the fake link object we set up)
+      #perform the action/ exercise the system
       dummy_params = { attribute: "value" }
       post(:create, { params: {link: dummy_params }})
+
+      # expect LinkController#create to call LinkMailer#new_link method
+      # in rspec world, you think from the receiving end - expect LinkMailer to have received a call to stubbed "new_link" method
+      # said another way, expect "new_link" method of LinkMailer to have been called
+      expect(LinkMailer).to have_received(:new_link).with(valid_link)
     end
   end
 end
